@@ -1,6 +1,9 @@
 <?php
 
 
+print_r($paper);
+echo "<br>";
+// Вывод массива происходит ниже по строкам, чем инициализация массива. В данном случае ничего выведено не будет, т.к. сам массив находится ниже.
 
 // массивы
 
@@ -20,7 +23,7 @@ $paper[] = "Laser";
 // php сам расставит нумерацию
 print_r($paper);
 echo "<br>";
-// Можно принудительно задать нумерацию, но тогда возникают проблемы с большим количеством юнитов, когда возникнет необходимость удаления.
+// Можно принудительно задать нумерацию, но тогда возникают проблемы с большим количеством элементов, когда возникнет необходимость удаления, нумерацию придется тоже корректировать и тд
 
 $paper_1[0] = "Copier";
 $paper_1[1] = "Inkjet";
@@ -100,7 +103,7 @@ foreach ($paper_associate_array_check as $index_array => $associate_description)
 }
 echo "<br>";
 
-// Альтернативный синтаксис foreach..as - функция list в сочетании с функцией each
+// Альтернативный синтаксис foreach..as - функция list в сочетании с функцией each для асоциативных массивов
 $paper_associative = array('paper_index_5' => "paper_15",
                            'paper_index_6' => "paper_16",
                            'paper_index_7' => "paper_17",
@@ -108,13 +111,58 @@ $paper_associative = array('paper_index_5' => "paper_15",
 while (list($temp_variable_for_index, $temp_variable_for_meaning) = each($paper_associative)) {
   echo "$temp_variable_for_index: $temp_variable_for_meaning <br>";
 }
+// Когда возвращать становится нечего, функция each возвращает false
+// Функция list принимает массив в качестве аргументов и раскидывает его по переменным, находящимся в скобках.
+
+list($variable_1_7, $variable_1_8) = array('Alice', 'Bob');
+echo "<br>";
+echo "$variable_1_7 - Alice, Bob - $variable_1_8" . "<br>";
+// Использование функции list в массиве с числовой индексацией.
+
+// Вопрос: а как функция list распознает, какой из массивов с числовой индексацией, а какой массив является ассоциативным?
+// Возможно для этого и нужна функция each
 
 
 
 
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
+// Многомерные массивы
+// Можно создавать массивы любой размерности, но обычно не используется больше трех.
 
 
+$products = array(
+  'paper' =>  array(
+    'copier' =>  "paper_for_copier",
+    'inkjet' =>  "paper_for_inkjet_printer",
+    'photo'  =>  "paper_for_photo_print",
+    'laser'  =>  "paper_for_laser_printer"),
+  'pens'  =>  array(
+    'ball'  =>  "pens_width_ball",
+    'hilite'  =>  "pens_hilite",
+    'marker'  =>  "markers"),
+  'misc'  =>  array(
+    'tape'  =>  "sticky_tape",
+    'glue'  =>  "glue_glue",
+    'clips' =>  "clips_clips"
+  )
+);
+echo "<pre>";
+foreach ($products as $section_products => $items_products) {
+  foreach ($items_products as $key_products => $item_single_product) {
+    echo "$section_products: \t$key_products \t($item_single_product)" . "<br>";
+  }
+}
+echo "</pre>";
 
+
+echo "<br>";
+echo "<br>";
+echo "<br>";
+echo "<br>";
 
 
 
